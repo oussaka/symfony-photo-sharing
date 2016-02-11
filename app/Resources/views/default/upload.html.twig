@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'upload' %}
+
+{% block main %}
+
+    {{ form_start(form) }}
+
+    <div class="form-group">
+        <button class="btn btn-primary pull-right" type="submit">Submit</button>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
