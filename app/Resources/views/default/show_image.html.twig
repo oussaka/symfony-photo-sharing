@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'show_imagea' %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="thumbnail">
+            <img src="../../{{ image.getWebPath }}" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <p>Author: {{ image.user }}</p>
+            <p>Fecha: {{ image.createdAt|date }}</p>
+            <p>Favoritos:</p>
+            <p>Comentarios:</p>
+        </div>
+    </div>
+
+{% endblock %}
