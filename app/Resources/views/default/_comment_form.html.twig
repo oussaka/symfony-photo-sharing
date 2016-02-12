@@ -1,0 +1,18 @@
+{{ form_start(form, { method: 'POST', action: path('comment_new', { 'id': image.id }) }) }}
+
+<fieldset>
+    <legend>Add comment</legend>
+
+    {{ form_errors(form) }}
+
+    <div class="form-group {% if not form.content.vars.valid %}has-error{% endif %}">
+        {{ form_label(form.content, 'label.content', { label_attr: { class: 'hidden' }}) }}
+        {{ form_errors(form.content) }}
+        {{ form_widget(form.content, { attr: { rows: 3, 'style': 'width:100%' } }) }}
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary pull-right" type="submit">Publicar</button>
+    </div>
+</fieldset>
+{{ form_end(form) }}

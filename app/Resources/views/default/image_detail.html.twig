@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'image_detail' %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="thumbnail">
+            <img src="{{ image.getWebPath | imagine_filter('my_widen') }}" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <p>Author: {{ image.user }}</p>
+            <p>{{ image.name }}</p>
+        </div>
+
+        <div class="col-md-2">
+            {% if rating.id is defined %}
+                {% set icon = 'glyphicon glyphicon-star' %}
+            {% else %}
+                {% set icon = 'glyphicon glyphicon-star-empty' %}
+            {% endif %}
+
+            <p>
+                <button id="favorite" class="btn btn-default btn-xs" type="button" value="{{ image.id }}">
+                    <span aria-hidden="true" class="{{ icon }}"></span>
+                    Star
+                </button>
+                <span id="num-favorites">{{ image.ratings|length }}</span>
+            </p>
+        </div>
+
+        <div class="col-md-3">
+            <p>Subida: {{ image.createdAt|date }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <div id="image-add-comment" class="well">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ render(controller('AppBundle:Default:commentForm', { 'id': image.id })) }}
+                {% else %}
+                    <p>
+                        <a class="btn btn-success" href="{{ path('fos_user_security_login') }}">
+                            <i class="fa fa-sign-in"></i> Login
+                        </a>
+                        para publicar un comentario
+                    </p>
+                {% endif %}
+            </div>
+
+            <h4>Comentarios: {{ image.comments|length }}</h4>
+
+            <ul>
+                {% for comment in image.comments %}
+                    <li>
+                        {{ comment.user }}
+                        fecha: {{ comment.publishedAt|date }}
+                        <p>{{ comment.content }}</p>
+                    </li>
+                {% else %}
+                    <div class="image-comment">
+                        <p>No hay comentarios</p>
+                    </div>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div class="col-md-5">
+            <h4>Etiquetas</h4>
+
+            <ul>
+            {% for tag in image.tags %}
+                <li>
+                    <a href="{{ path('photos_tags', {'tag': tag.name }) }}">{{ tag.name }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+

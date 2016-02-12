@@ -6,6 +6,14 @@
 
     {{ form_start(form) }}
 
+    <h3>Tags</h3>
+    <ul class="tags" data-prototype="{{ form_widget(form.tags.vars.prototype)|e }}">
+        {% for tag in form.tags %}
+            <li>{{ form_row(tag.name) }}</li>
+        {% endfor %}
+    </ul>
+
+
     <div class="form-group">
         <button class="btn btn-primary pull-right" type="submit">Submit</button>
     </div>
