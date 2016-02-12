@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -22,18 +23,23 @@ class Comment
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = "5",
+     *     minMessage = "Demasiado corto",
+     *     max = "10000",
+     *     maxMessage = "Demasiado largo"
+     * )
      */
-    private $text;
+    private $content;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="publishedAt", type="datetime")
      */
-    private $createdAt;
+    private $publishedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="Image", inversedBy="comments")
@@ -48,6 +54,11 @@ class Comment
     private $user;
 
 
+    public function __construct()
+    {
+        $this->publishedAt = new \DateTime();
+    }
+
     /**
      * Get id
      *
@@ -59,51 +70,51 @@ class Comment
     }
 
     /**
-     * Set text
+     * Set content
      *
-     * @param string $text
+     * @param string $content
      *
      * @return Comment
      */
-    public function setText($text)
+    public function setContent($content)
     {
-        $this->text = $text;
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get text
+     * Get content
      *
      * @return string
      */
-    public function getText()
+    public function getContent()
     {
-        return $this->text;
+        return $this->content;
     }
 
     /**
-     * Set createdAt
+     * Set publishedAt
      *
-     * @param \DateTime $createdAt
+     * @param \DateTime $publishedAt
      *
      * @return Comment
      */
-    public function setCreatedAt($createdAt)
+    public function setPublishedAt($publishedAt)
     {
-        $this->createdAt = $createdAt;
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }
 
     /**
-     * Get createdAt
+     * Get publishedAt
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getPublishedAt()
     {
-        return $this->createdAt;
+        return $this->publishedAt;
     }
 
     /**

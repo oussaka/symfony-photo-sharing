@@ -29,13 +29,6 @@ class Rating
     private $createdAt;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="score", type="integer")
-     */
-    private $score;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Image", inversedBy="ratings")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="CASCADE")
      */
@@ -47,6 +40,11 @@ class Rating
      */
     private $user;
 
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -82,29 +80,6 @@ class Rating
         return $this->createdAt;
     }
 
-    /**
-     * Set score
-     *
-     * @param integer $score
-     *
-     * @return Rating
-     */
-    public function setScore($score)
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    /**
-     * Get score
-     *
-     * @return int
-     */
-    public function getScore()
-    {
-        return $this->score;
-    }
 
     /**
      * Set image
