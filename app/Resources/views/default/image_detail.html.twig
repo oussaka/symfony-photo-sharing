@@ -16,6 +16,11 @@
         <div class="col-md-5 col-md-offset-1">
             <p>Author: {{ image.user }}</p>
             <p>{{ image.name }}</p>
+
+            {% if is_granted('edit', image) %}
+                <a href="{{ path('image_edit', {'id': image.id}) }}">Edit</a>
+            {% endif %}
+
         </div>
 
         <div class="col-md-2">
@@ -78,7 +83,7 @@
             <ul>
             {% for tag in image.tags %}
                 <li>
-                    <a href="{{ path('photos_tags', {'tag': tag.name }) }}">{{ tag.name }}</a>
+                    <a href="{{ path('images_tags', {'tag': tag.name }) }}">{{ tag.name }}</a>
                 </li>
             {% endfor %}
             </ul>

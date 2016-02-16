@@ -74,6 +74,10 @@ class DefaultController extends Controller
             'user' => $this->getUser()
         ));
 
+        if ($this->isGranted('edit', $image)) {
+            dump('puedo editar');
+        }
+
         return $this->render('default/image_detail.html.twig', array(
             'image' => $image,
             'rating' => $rating
@@ -151,9 +155,9 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/photos/tags/{tag}", name="photos_tags")
+     * @Route("/photos/tags/{tag}", name="images_tags")
      */
-    public function photosTagsAction($tag)
+    public function imagesTagsAction($tag)
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AppBundle:Tag')->findBy(array(
@@ -165,4 +169,29 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * @Route("/photos/{id}/edit", name="image_edit")
+     */
+    public function imageEditAction(Request $request, Image $image)
+    {
+        $this->denyAccessUnlessGranted('edit', $image);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $editForm = $this->createForm('AppBundle\Form\ImageType', $image);
+        $editForm->remove('file');
+
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('image_detail', array('id' => $image->getId()));
+        }
+
+        return $this->render('default/image_edit.html.twig', array(
+            'image' => $image,
+            'form' => $editForm->createView()
+        ));
+    }
 }
