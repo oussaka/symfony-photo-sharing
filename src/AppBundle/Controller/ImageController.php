@@ -4,22 +4,27 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Rating;
-use AppBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\ImageType;
+use Doctrine\Common\Collections\ArrayCollection;
 
-class DefaultController extends Controller
+class ImageController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/index.html.twig');
+        $entityManager = $this->getDoctrine()->getManager();
+        $images = $entityManager->getRepository('AppBundle:Image')->findHighestRatedImages();
+
+        return $this->render('default/index.html.twig', array(
+            'images' => $images
+        ));
     }
 
     /**
@@ -42,7 +47,7 @@ class DefaultController extends Controller
             $em->persist($image);
             $em->flush();
 
-            return $this->redirectToRoute('explore');
+            return $this->redirectToRoute('images_user', array('user'=>$this->getUser()));
         }
 
         return $this->render('default/upload.html.twig', array(
@@ -73,10 +78,6 @@ class DefaultController extends Controller
             'image' => $image->getId(),
             'user' => $this->getUser()
         ));
-
-        if ($this->isGranted('edit', $image)) {
-            dump('puedo editar');
-        }
 
         return $this->render('default/image_detail.html.twig', array(
             'image' => $image,
@@ -178,13 +179,30 @@ class DefaultController extends Controller
 
         $entityManager = $this->getDoctrine()->getManager();
 
+        $originalTags = new ArrayCollection();
+
+        foreach ($image->getTags() as $tag) {
+            $originalTags->add($tag);
+        }
+
         $editForm = $this->createForm('AppBundle\Form\ImageType', $image);
         $editForm->remove('file');
 
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            foreach ($originalTags as $tag) {
+                if (false === $image->getTags()->contains($tag)) {
+                    $entityManager->persist($tag);
+                    $entityManager->remove($tag);
+                }
+            }
+
+            $entityManager->persist($image);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Datos editados correctamente');
 
             return $this->redirectToRoute('image_detail', array('id' => $image->getId()));
         }
@@ -192,6 +210,27 @@ class DefaultController extends Controller
         return $this->render('default/image_edit.html.twig', array(
             'image' => $image,
             'form' => $editForm->createView()
+        ));
+    }
+
+    /**
+     * @Route("/photos/user/{user}", name="images_user")
+     */
+    public function imagesUserAction($user)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:User')->findOneBy(array(
+            'username' => $user
+        ));
+
+        $images = $em->getRepository('AppBundle:Image')->findBy(array(
+            'user' => $entities->getId()),
+            array('createdAt' => 'DESC')
+        );
+
+        return $this->render('default/users_image.html.twig', array(
+            'images' => $images
         ));
     }
 }

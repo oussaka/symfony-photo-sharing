@@ -1,0 +1,14 @@
+
+{% block _image_tags_entry_widget %}
+
+    <div class="entry input-group input-group-sm input-group-responsive">
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        <span class="input-group-btn">
+            <button class="btn btn-success btn-danger" type="button">
+                <span class="glyphicon glyphicon-minus"></span>
+            </button>
+        </span>
+    </div>
+
+{% endblock %}
+

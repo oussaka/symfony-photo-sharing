@@ -2,11 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Photo Gallery{% endblock %}</title>
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     {% endblock %}
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -15,8 +16,8 @@
 <body id="{% block body_id %}{% endblock %}">
 
 {% block header %}
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
             <div class="navbar-header">
                 <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                     <span class="sr-only">Toggle navigation</span>
@@ -24,36 +25,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">Project name</a>
+                <a href="#" class="navbar-brand">Photo Gallery</a>
             </div>
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('homepage') }}">Home</a></li>
-                    <li><a href="{{ path('upload') }}">Upload!</a></li>
-                    <li><a href="{{ path('explore') }}">Explore</a></li>
+                    <li {% if app.request.get('_route') == 'homepage' %} class="active"{% endif %}>
+                        <a href="{{ path('homepage') }}">Home</a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'upload' %} class="active"{% endif %}>
+                        <a href="{{ path('upload') }}">Upload!</a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'explore' %} class="active"{% endif %}>
+                        <a href="{{ path('explore') }}">Explore</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <p class="navbar-btn">
-                                {{ app.user.username }}
-                                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default">Logout</a>
-                            </p>
-                        {% else %}
-                            <p class="navbar-btn">
-                                <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">Login</a>
-                                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default">Register</a>
-                            </p>
-                        {% endif %}
-
-                    </li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                {{ app.user.username }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('images_user', {'user': app.user.username}) }}">Your profile</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li>
+                        <p class="navbar-btn">
+                            <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">Login</a>
+                            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Register</a>
+                        </p>
+                        </li>
+                    {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
 {% endblock %}
 
-<div class="container-fluid">
+<div class="container">
     {% block body %}
         {% block main %}{% endblock %}
     {% endblock %}
@@ -61,6 +72,15 @@
 
 
 {% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div id="footer-copyright" class="col-md-6">
+                    <p>&copy; {{ 'now'|date('Y') }} - A Symfony Project</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% endblock %}
 
 

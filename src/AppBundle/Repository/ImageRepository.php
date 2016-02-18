@@ -10,4 +10,24 @@ namespace AppBundle\Repository;
  */
 class ImageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy(array(), array('createdAt' => 'DESC'));
+    }
+
+    public function findHighestRatedImages()
+    {
+        $images = $this->createQueryBuilder('i')
+            ->select('i as image')
+            ->addSelect('count(ratings) as stars')
+            ->innerJoin('i.ratings', 'ratings')
+            ->groupBy('i.id')
+            ->orderBy('stars', 'DESC')
+            ->getQuery()
+            ->setMaxResults(3)
+            ->getResult()
+        ;
+
+        return $images;
+    }
 }
