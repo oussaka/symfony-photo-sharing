@@ -23,7 +23,8 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "liip/imagine-bundle": "^1.4",
-        "friendsofsymfony/jsrouting-bundle": "^1.6"
+        "friendsofsymfony/jsrouting-bundle": "^1.6",
+        "salavert/time-ago-in-words": "1.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
