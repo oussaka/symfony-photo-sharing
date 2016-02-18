@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -86,4 +86,4 @@ liip_imagine:
                 thumbnail: { size: [298, 223], mode: inset }
         my_widen:
             filters:
-                relative_resize: { widen: 600 }
+                relative_resize: { widen: 800 }

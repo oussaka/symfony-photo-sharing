@@ -1,8 +1,10 @@
 $(function(){
     $('#favorite').click(function(e){
+        var id = $(this).data('id');
+
         var url = Routing.generate(
             'favorite',
-            {"id": this.value}
+            {"id": id}
         );
 
         $.ajax({
@@ -10,10 +12,10 @@ $(function(){
             'type': 'GET',
             'success': function(r) {
                 if (r.stat == 'add'){
-                    $('#favorite span').removeClass("glyphicon-star-empty").addClass("glyphicon glyphicon-star");
+                    $('#favorite span#icon').removeClass("glyphicon-star-empty").addClass("glyphicon glyphicon-star");
                     $('#num-favorites').html(parseInt($('#num-favorites').html(), 10)+1);
                 }else if (r.stat == 'remove'){
-                    $('#favorite span').removeClass("glyphicon-star").addClass("glyphicon glyphicon-star-empty");
+                    $('#favorite span#icon').removeClass("glyphicon-star").addClass("glyphicon glyphicon-star-empty");
                     $('#num-favorites').html(parseInt($('#num-favorites').html(), 10)-1);
                 }
             }
@@ -21,35 +23,41 @@ $(function(){
     });
 
 
-
-
-    var $collectionHolder;
-    var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
-    var $newLinkLi = $('<li></li>').append($addTagLink);
-
     jQuery(document).ready(function() {
-        $collectionHolder = $('ul.tags');
-
-        $collectionHolder.append($newLinkLi);
-
-        $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-        $addTagLink.on('click', function(e) {
-            e.preventDefault();
-            addTagForm($collectionHolder, $newLinkLi);
-        });
+        addRemoveButton();
+        addButtonTagEvent();
     });
 
-    function addTagForm($collectionHolder, $newLinkLi) {
-        var prototype = $collectionHolder.data('prototype');
-        var index = $collectionHolder.data('index');
-        var newForm = prototype.replace(/__name__/g, index);
+    function addButtonTagEvent() {
+        $('#add-tag').on('click', function(e) {
+            e.preventDefault();
 
-        $collectionHolder.data('index', index + 1);
+            var $newLinkLi = $('<li></li>');
 
-        var $newFormLi = $('<li></li>').append(newForm);
-        $newLinkLi.before($newFormLi);
+            $collectionHolder = $('ul.tags');
+
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+            var newForm = prototype.replace(/__name__/g, index);
+
+            $collectionHolder.data('index', index + 1);
+
+            var $newFormLi = $('<li></li>').append(newForm);
+
+            console.log($newFormLi);
+            $collectionHolder.append($newFormLi);
+
+            addRemoveButton();
+        });
     }
 
+    function addRemoveButton() {
+        $('ul.tags li .btn-danger').click(function(e) {
+            e.preventDefault();
+            $( this ).parentsUntil('ul').remove();
+        });
+    }
 
 });
