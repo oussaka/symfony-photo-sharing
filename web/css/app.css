@@ -49,3 +49,8 @@ body {
 .carousel-inner > .item > img {
     margin: 0 auto;
 }
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
