@@ -19,7 +19,9 @@
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>{{ row.image.name }}</h1>
-                            <p><a role="button" href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-primary">Sign up today</a></p>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                                <p><a role="button" href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-primary">Sign up today</a></p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -37,13 +37,10 @@
                         {% set icon = 'glyphicon glyphicon-star-empty' %}
                     {% endif %}
 
-
                     <button class="btn btn-default btn-sm" data-id="{{ image.id }}" id="favorite" type="button">
                         <span id="icon" aria-hidden="true" class="{{ icon }}"></span>
                         <span id="num-favorites">{{ image.ratings|length }}</span>
                     </button>
-
-                    {#<span data-id="{{ image.id }}" id="favorite" aria-hidden="true" class="{{ icon }}"></span>#}
                 </div>
 
                 <div class="col-md-2 col-xs-2">

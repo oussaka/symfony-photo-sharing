@@ -1,15 +1,19 @@
+{% form_theme form 'form/fields.html.twig' %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-signin'}}) }}
+{{ form_errors(form) }}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-signin', 'novalidate': 'novalidate'}}) }}
     <h2 class="form-signin-heading">Register</h2>
 
-    {{ form_row(form.email, { 'attr': { 'class': 'form-control'} }) }}
+    {{ form_row(form.email) }}
 
-    {{ form_row(form.username, { 'attr': { 'class': 'form-control'} }) }}
+    {{ form_row(form.username) }}
 
-    {{ form_row(form.plainPassword.first, { 'attr': { 'class': 'form-control'} }) }}
+    {{ form_row(form.plainPassword.first) }}
 
-    {{ form_row(form.plainPassword.second, { 'attr': { 'class': 'form-control'} }) }}
+    {{ form_row(form.plainPassword.second) }}
 
     <div>
         <input type="submit" class="btn btn-lg btn-primary btn-block" value="{{ 'registration.submit'|trans }}" />
