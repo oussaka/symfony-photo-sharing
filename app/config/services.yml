@@ -19,3 +19,9 @@ services:
         arguments: ["@translator"]
         tags:
             - { name: twig.extension }
+
+    app.cacheimage_listener:
+        class: AppBundle\EventListener\CacheImageListener
+        arguments: ["@liip_imagine.cache.manager"]
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }

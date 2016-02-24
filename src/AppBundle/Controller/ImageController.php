@@ -47,7 +47,7 @@ class ImageController extends Controller
             $em->persist($image);
             $em->flush();
 
-            return $this->redirectToRoute('images_user', array('user'=>$this->getUser()));
+            return $this->redirectToRoute('images_user', array('user' => $this->getUser()));
         }
 
         return $this->render('default/upload.html.twig', array(
@@ -128,7 +128,7 @@ class ImageController extends Controller
      */
     public function favoriteAction(Request $request, Image $image)
     {
-        if ($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
 
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:Rating')->findOneBy(array(
@@ -144,13 +144,13 @@ class ImageController extends Controller
                 $em->flush();
 
                 return new JsonResponse(array('stat' => 'add'));
-            }else{
+            } else {
                 $em->remove($entity);
                 $em->flush();
 
                 return new JsonResponse(array('stat' => 'remove'));
             }
-        }else{
+        } else {
             return $this->redirectToRoute('explore');
         }
     }
@@ -233,4 +233,19 @@ class ImageController extends Controller
             'images' => $images
         ));
     }
+
+    /**
+     * @Route("/photos/{id}/remove", name="image_remove")
+     */
+    public function imageRemoveAction(Request $request, Image $image)
+    {
+        $this->denyAccessUnlessGranted('edit', $image);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($image);
+        $em->flush();
+
+        return $this->redirectToRoute('explore');
+    }
+
 }

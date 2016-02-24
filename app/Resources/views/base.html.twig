@@ -72,7 +72,7 @@
 
 
 {% block footer %}
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="row">
                 <div id="footer-copyright" class="col-md-6">
@@ -87,6 +87,7 @@
 {% block javascripts %}
     <script src="{{ asset('js/jquery-2.2.0.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootbox.min.js') }}"></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>

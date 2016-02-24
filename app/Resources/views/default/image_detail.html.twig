@@ -64,6 +64,9 @@
                         <a href="{{ path('image_edit', {'id': image.id}) }}">
                             <span class="glyphicon glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
+                        <a class="remove" href="#">
+                            <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
                     {% endif %}
                 </div>
             </div>
@@ -122,7 +125,22 @@
 
     </div>
 
-
 {% endblock %}
 
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $(document).on("click", ".remove", function(e) {
+            bootbox.confirm({
+                size: 'small',
+                message: "Are you sure?",
+                callback: function(result){
+                    if(result){
+                        window.location='{{ path('image_remove', {'id': image.id }) }}'
+                    }
+                }
+            })
+        });
+    </script>
+{% endblock %}
