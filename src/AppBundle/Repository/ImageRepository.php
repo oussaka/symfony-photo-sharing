@@ -30,4 +30,17 @@ class ImageRepository extends \Doctrine\ORM\EntityRepository
 
         return $images;
     }
+
+    public function findImagesByTags($tag)
+    {
+        return $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('i')
+            ->from('AppBundle:Image', 'i')
+            ->innerJoin('i.tags','t')
+            ->where('t.name = :tag')
+            ->setParameter('tag', $tag)
+            ->getQuery()
+            ->getResult();
+    }
 }

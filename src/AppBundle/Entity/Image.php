@@ -16,6 +16,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Image
 {
+    const NUM_ITEMS = 30;
+
     /**
      * @var int
      *

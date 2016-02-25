@@ -56,12 +56,17 @@ class ImageController extends Controller
     }
 
     /**
-     * @Route("/explore", name="explore")
+     * @Route("/explore/", name="explore", defaults={"page" = 1})
+     * @Route("/explore/page/{page}", name="explore_paginated", requirements={"page" : "\d+"})
      */
-    public function exploreAction(Request $request)
+    public function exploreAction($page)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $images = $entityManager->getRepository('AppBundle:Image')->findAll();
+        $query = $entityManager->getRepository('AppBundle:Image')->findAll();
+
+        $paginator  = $this->get('knp_paginator');
+        $images = $paginator->paginate($query, $page, Image::NUM_ITEMS);
+        $images->setUsedRoute('explore_paginated');
 
         return $this->render('default/explore.html.twig', array(
             'images' => $images
@@ -156,17 +161,20 @@ class ImageController extends Controller
     }
 
     /**
-     * @Route("/photos/tags/{tag}", name="images_tags")
+     * @Route("/photos/tags/{tag}", name="images_tags", defaults={"page" = 1})
+     * @Route("/photos/tags/{tag}/page/{page}", name="image_tags_paginated", requirements={"page" : "\d+"})
      */
-    public function imagesTagsAction($tag)
+    public function imagesTagsAction($tag, $page)
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('AppBundle:Tag')->findBy(array(
-            'name' => $tag
-        ));
+        $query = $em->getRepository('AppBundle:Image')->findImagesByTags($tag);
+
+        $paginator  = $this->get('knp_paginator');
+        $images = $paginator->paginate($query, $page, Image::NUM_ITEMS);
+        $images->setUsedRoute('image_tags_paginated');
 
         return $this->render('default/tags_image.html.twig', array(
-            'tags' => $entities
+            'images' => $images
         ));
     }
 
@@ -214,9 +222,10 @@ class ImageController extends Controller
     }
 
     /**
-     * @Route("/photos/user/{user}", name="images_user")
+     * @Route("/photos/user/{user}", name="images_user", defaults={"page" = 1})
+     * @Route("/photos/user/{user}/page/{page}", name="images_user_paginated", requirements={"page" : "\d+"})
      */
-    public function imagesUserAction($user)
+    public function imagesUserAction($user, $page)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -224,10 +233,14 @@ class ImageController extends Controller
             'username' => $user
         ));
 
-        $images = $em->getRepository('AppBundle:Image')->findBy(array(
+        $query = $em->getRepository('AppBundle:Image')->findBy(array(
             'user' => $entities->getId()),
             array('createdAt' => 'DESC')
         );
+
+        $paginator  = $this->get('knp_paginator');
+        $images = $paginator->paginate($query, $page, Image::NUM_ITEMS);
+        $images->setUsedRoute('images_user_paginated');
 
         return $this->render('default/users_image.html.twig', array(
             'images' => $images
