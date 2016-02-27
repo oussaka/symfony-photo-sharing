@@ -8,6 +8,8 @@
 
         {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
 
+        {% do form.tags.setRendered %}
+
         <div class="row">
             <div class="col-md-7">
                 <div class="thumbnail">
