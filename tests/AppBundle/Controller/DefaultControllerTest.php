@@ -14,10 +14,7 @@ class DefaultControllerTest extends WebTestCase
         $client = self::createClient();
         $client->request('GET', $url);
 
-        $this->assertTrue(
-            $client->getResponse()->isSuccessful(),
-            sprintf('The %s public URL loads correctly.', $url)
-        );
+        $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
     /**
@@ -32,8 +29,7 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertEquals(
             'http://localhost/login',
-            $client->getResponse()->getTargetUrl(),
-            sprintf('The %s secure URL redirects to the login form.', $url)
+            $client->getResponse()->getTargetUrl()
         );
     }
 
@@ -41,7 +37,7 @@ class DefaultControllerTest extends WebTestCase
     {
         return array(
             array('/'),
-            array('/explore'),
+            array('/explore/'),
         );
     }
 
@@ -49,7 +45,6 @@ class DefaultControllerTest extends WebTestCase
     {
         return array(
             array('/upload'),
-            array('/photos/19/edit')
         );
     }
 }
