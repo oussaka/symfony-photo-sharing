@@ -2,20 +2,32 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_errors(form) }}
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4 form-box">
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-signin', 'novalidate': 'novalidate'}}) }}
-    <h2 class="form-signin-heading">Register</h2>
+        {{ form_errors(form) }}
 
-    {{ form_row(form.email) }}
+        <div class="form-top">
+            <h4>Register</h4>
+            <p></p>
+        </div>
 
-    {{ form_row(form.username) }}
+        <div class="form-bottom">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'novalidate': 'novalidate'}}) }}
 
-    {{ form_row(form.plainPassword.first) }}
+                {{ form_row(form.email) }}
 
-    {{ form_row(form.plainPassword.second) }}
+                {{ form_row(form.username) }}
 
-    <div>
-        <input type="submit" class="btn btn-lg btn-primary btn-block" value="{{ 'registration.submit'|trans }}" />
+                {{ form_row(form.plainPassword.first) }}
+
+                {{ form_row(form.plainPassword.second) }}
+
+                <div>
+                    <input type="submit" class="btn btn-primary btn-block" value="{{ 'registration.submit'|trans }}" />
+                </div>
+            {{ form_end(form) }}
+        </div>
+
     </div>
-{{ form_end(form) }}
+</div>

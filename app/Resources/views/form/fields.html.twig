@@ -15,13 +15,26 @@
 
 {% block form_row %}
     {% spaceless %}
-        <div class="form-group">
+        <div class="form-group {% if not form.vars.valid %}has-error{% endif %}">
             {{ form_label(form, null, { 'label_attr': {'class': 'control-label'} }) }}
             {{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
             {{ form_errors(form) }}
         </div>
     {% endspaceless %}
 {% endblock form_row %}
+
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <ul class="list-unstyled">
+                {% for error in errors %}
+                    <li><label class="help-block text-danger">{{ error.message }}</label></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
 
 
 {% block file_row %}

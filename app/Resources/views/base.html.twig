@@ -46,16 +46,16 @@
                                 {{ app.user.username }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('images_user', {'user': app.user.username}) }}">Your profile</a></li>
+                                <li><a href="{{ path('fos_user_profile_edit') }}">Your profile</a></li>
                                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                             </ul>
                         </li>
                     {% else %}
                         <li>
-                        <p class="navbar-btn">
-                            <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">Login</a>
-                            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Register</a>
-                        </p>
+                            <a href="{{ path('fos_user_security_login') }}">Log in</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_registration_register') }}">Sign up</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -72,7 +72,7 @@
 
 
 {% block footer %}
-    <footer class="footer">
+    {#<footer class="footer">
         <div class="container">
             <div class="row">
                 <div id="footer-copyright" class="col-md-6">
@@ -80,9 +80,8 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>#}
 {% endblock %}
-
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-2.2.0.js') }}"></script>

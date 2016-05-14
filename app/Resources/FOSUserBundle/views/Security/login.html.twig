@@ -4,30 +4,48 @@
 
 {% block fos_user_content %}
 
-    {% if error %}
-        <div class="alert alert-danger">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            {{ error.messageKey|trans(error.messageData, 'security') }}
-        </div>
-    {% endif %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin" novalidate>
-        <h2 class="form-signin-heading">Please sign in</h2>
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4 form-box">
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% if error %}
+            <div class="alert alert-danger">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
 
-        <label class="sr-only" for="username"></label>
-        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}"/>
-
-        <label class="sr-only" for="password"></label>
-        <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}"/>
-
-        <div class="checkbox">
-            <label for="remember_me">
-                <input type="checkbox" value="remember_me" name="_remember_me" value="on"> {{ 'security.login.remember_me'|trans }}
-            </label>
+        <div class="form-top">
+            <h4>Login</h4>
+            <p>Enter your username and password</p>
         </div>
 
-        <input class="btn btn-lg btn-primary btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-    </form>
+        <div class="form-bottom">
+            <form action="{{ path("fos_user_security_check") }}" method="post" novalidate>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                <div class="form-group">
+                    <label for="username">{{ 'security.login.username'|trans }}</label>
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                    <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}"/>
+                </div>
+
+                <div class="checkbox">
+                    <label for="remember_me">
+                        <input type="checkbox" value="remember_me" name="_remember_me" value="on"> {{ 'security.login.remember_me'|trans }}
+                    </label>
+                </div>
+
+                <input class="btn btn-primary btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
 {% endblock fos_user_content %}
