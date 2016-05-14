@@ -6,7 +6,7 @@
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <div class="thumbnail">
                     <a href="{{ path('image_detail', {'id': image.id}) }}">
-                        <img class="img-responsive" src="{{ image.getWebPath | imagine_filter('my_thumb') }}" />
+                        <img class="img-responsive" src="{{ image.getWebPath | imagine_filter('thumbnails') }}" />
                     </a>
                 </div>
             </div>

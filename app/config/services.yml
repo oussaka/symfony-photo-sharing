@@ -25,3 +25,8 @@ services:
         arguments: ["@liip_imagine.cache.manager"]
         tags:
             - { name: doctrine.event_listener, event: preRemove }
+
+    app.form.profile:
+        class: AppBundle\Form\ProfileType
+        tags:
+            - { name: form.type, alias: fos_user_profile }

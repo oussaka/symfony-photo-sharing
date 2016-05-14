@@ -3,11 +3,16 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="row">
+    <div class="col-sm-2">
+        <img src="{{ form.vars.value.getWebPath | imagine_filter('profile') }}">
+    </div>
+
     <div class="col-sm-4">
 
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit', 'novalidate': 'novalidate'} }) }}
 
-        {{ form_widget(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.profilePicture) }}
 
         <div>
             <input type="submit" class="btn btn-default btn-block" value="{{ 'profile.edit.submit'|trans }}" />

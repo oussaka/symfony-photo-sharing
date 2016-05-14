@@ -15,7 +15,7 @@
             {% for row in images %}
 
                 <div class="item {% if loop.index == 1 %} active {% endif %}">
-                    <img src="{{ row.image.getWebPath | imagine_filter('my_widen') }}" class=""/>
+                    <img src="{{ row.image.getWebPath | imagine_filter('explore') }}" class=""/>
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>{{ row.image.name }}</h1>

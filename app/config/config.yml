@@ -72,6 +72,11 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
+    profile:
+        form:
+            type: AppBundle\Form\ProfileType
+            validation_groups:
+                - Profile
 
 liip_imagine:
     resolvers:
@@ -80,13 +85,16 @@ liip_imagine:
 
     filter_sets:
         cache: ~
-        my_thumb:
+        thumbnails:
             quality: 75
             filters:
                 thumbnail: { size: [298, 223], mode: inset }
-        my_widen:
+        explore:
             filters:
                 relative_resize: { widen: 800 }
+        profile:
+            filters:
+                thumbnail: { size: [100, 100], mode: inset }
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
