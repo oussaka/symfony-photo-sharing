@@ -1,5 +1,5 @@
 $(function(){
-    $('#favorite').click(function(e){
+    $('.favorite').click(function(e){
         var id = $(this).data('id');
 
         var url = Routing.generate(
@@ -12,11 +12,11 @@ $(function(){
             'type': 'GET',
             'success': function(r) {
                 if (r.stat == 'add'){
-                    $('#favorite span#icon').removeClass("glyphicon-star-empty").addClass("glyphicon glyphicon-star");
-                    $('#num-favorites').html(parseInt($('#num-favorites').html(), 10)+1);
+                    $('.favorite span#icon-'+id).removeClass("glyphicon-star-empty").addClass("glyphicon glyphicon-star");
+                    $('#num-favorites-'+id).html(parseInt($('#num-favorites-'+id).html(), 10)+1);
                 }else if (r.stat == 'remove'){
-                    $('#favorite span#icon').removeClass("glyphicon-star").addClass("glyphicon glyphicon-star-empty");
-                    $('#num-favorites').html(parseInt($('#num-favorites').html(), 10)-1);
+                    $('.favorite span#icon-'+id).removeClass("glyphicon-star").addClass("glyphicon glyphicon-star-empty");
+                    $('#num-favorites-'+id).html(parseInt($('#num-favorites-'+id).html(), 10)-1);
                 }
             }
         });

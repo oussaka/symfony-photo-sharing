@@ -1,0 +1,24 @@
+{% set icon = 'glyphicon glyphicon-star-empty' %}
+
+{% for i in image.ratings if app.user == i.user %}
+    {% set icon = 'glyphicon glyphicon-star' %}
+{% endfor %}
+
+<button class="btn btn-default btn-sm favorite" data-id="{{ image.id }}" type="button">
+    <span id="icon-{{ image.id }}" aria-hidden="true" class="{{ icon }}"></span>
+    <span id="num-favorites-{{ image.id }}">{{ image.ratings|length }}</span>
+</button>
+
+<a role="button" class="btn btn-default btn-sm" href="#image-add-comment">
+    <span class="glyphicon glyphicon-comment"></span>
+    {{ image.comments|length }}
+</a>
+
+{% if is_granted('edit', image) %}
+    <a href="{{ path('image_edit', {'id': image.id}) }}">
+        <span class="glyphicon glyphicon glyphicon-edit" aria-hidden="true"></span>
+    </a>
+    <a class="remove" href="#">
+        <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </a>
+{% endif %}

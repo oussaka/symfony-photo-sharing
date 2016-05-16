@@ -16,100 +16,41 @@
         <div class="col-md-7">
             <div class="thumbnail">
                 <img src="{{ image.getWebPath | imagine_filter('explore') }}" />
+                <div class="caption">
+                    <div class="row">
+                        <div class="col-md-9 col-xs-7">
+                            <a href="{{ path('images_user', {'user': image.user}) }}">{{ image.user }}</a>
+                            {{ image.createdAt|time_ago_in_words }}
+                            <p class="hidden-xs">{{ image.name }}</p>
+                        </div>
+                        <div class="col-md-3 col-xs-5">
+                            {% include "components/icons.html.twig" with {'image': image} %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="col-md-5">
 
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="{{ path('images_user', {'user': image.user}) }}"><strong>{{ image.user }}</strong></a>
+            {% if image.tags|length > 0 %}
+                <div class="row">
+                    <div class="col-md-12">
+                        Tags
+                        <ul id="tags" class="list-inline">
+                        {% for tag in image.tags %}
+                            <li>
+                                <a class="btn btn-xs btn-default" href="{{ path('images_tags', {'tag': tag.name }) }}">
+                                {{ tag.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-md-2 col-xs-2">
-                    {% if rating.id is defined %}
-                        {% set icon = 'glyphicon glyphicon-star' %}
-                    {% else %}
-                        {% set icon = 'glyphicon glyphicon-star-empty' %}
-                    {% endif %}
-
-                    <button class="btn btn-default btn-sm" data-id="{{ image.id }}" id="favorite" type="button">
-                        <span id="icon" aria-hidden="true" class="{{ icon }}"></span>
-                        <span id="num-favorites">{{ image.ratings|length }}</span>
-                    </button>
-                </div>
-
-                <div class="col-md-2 col-xs-2">
-                    <a role="button" class="btn btn-default btn-sm" href="#image-add-comment">
-                        <span class="glyphicon glyphicon-comment"></span>
-                        {{ image.comments|length }}
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-xs-8">
-                    Tomada el {{ image.createdAt|date('d F Y') }}
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-md-12">
-                    {{ image.name }}
-                    {% if is_granted('edit', image) %}
-                        <a href="{{ path('image_edit', {'id': image.id}) }}">
-                            <span class="glyphicon glyphicon glyphicon-edit" aria-hidden="true"></span>
-                        </a>
-                        <a class="remove" href="#">
-                            <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-md-12">
-                    Etiquetas
-                    <ul id="tags" class="list-inline">
-                    {% for tag in image.tags %}
-                        <li>
-                            <a class="btn btn-xs btn-default" href="{{ path('images_tags', {'tag': tag.name }) }}">
-                            {{ tag.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                </div>
-            </div>
-
-            <hr>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-7">
-            <div id="image-add-comment" class="well well-sm">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    {{ render(controller('AppBundle:Image:commentForm', { 'id': image.id })) }}
-                {% else %}
-                    <p>
-                        <a class="btn btn-success" href="{{ path('fos_user_security_login') }}">
-                            <i class="fa fa-sign-in"></i> Inicia sesión
-                        </a>
-                        para publicar un comentario o indicar que te gusta
-                    </p>
-                {% endif %}
-            </div>
+            {% endif %}
 
             <div class="comments well well-sm">
-                {#<p>Comentarios: {{ image.comments|length }}</p>#}
                 <ul class="list-unstyled">
                     {% for comment in image.comments %}
                         <li>
@@ -125,8 +66,21 @@
                 </ul>
             </div>
 
-        </div>
+            <div id="image-add-comment" class="well well-sm">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ render(controller('AppBundle:Image:commentForm', { 'id': image.id })) }}
+                {% else %}
+                    <p>
+                        <a class="btn btn-success" href="{{ path('fos_user_security_login') }}">
+                            <i class="fa fa-sign-in"></i> Inicia sesión
+                        </a>
+                        para publicar un comentario o indicar que te gusta
+                    </p>
+                {% endif %}
+            </div>
 
+
+        </div>
     </div>
 
 {% endblock %}

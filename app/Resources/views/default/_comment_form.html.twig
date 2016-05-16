@@ -1,8 +1,6 @@
 {{ form_start(form, { method: 'POST', action: path('comment_new', { 'id': image.id }) }) }}
 
 <fieldset>
-    <legend>Add comment</legend>
-
     {{ form_errors(form) }}
 
     <div class="form-group {% if not form.content.vars.valid %}has-error{% endif %}">

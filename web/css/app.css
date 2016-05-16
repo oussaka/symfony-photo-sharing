@@ -16,7 +16,7 @@ body {
 }
 
 .form-box {
-    margin-top: 35px;
+    /*margin-top: 35px;*/
 }
 
 .form-top {
@@ -32,6 +32,10 @@ body {
     border-radius: 0 0 4px 4px;
     padding: 25px 25px 30px;
     text-align: left;
+}
+
+.form-bottom label {
+    font-weight: normal;
 }
 
 .carousel-inner > .item > img {

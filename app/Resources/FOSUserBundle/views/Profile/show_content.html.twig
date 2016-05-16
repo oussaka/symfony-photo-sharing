@@ -1,9 +1,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
+<div class="row">
+    <div class="col-sm-2">
+        <img src="{{ user.getWebPath | imagine_filter('profile')}}">
+    </div>
+
+    <p>Name: {{ user.name }}</p>
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    <p>
-        <img src="{{ user.getWebPath | imagine_filter('profile')}}">
-    </p>
 </div>
