@@ -4,7 +4,9 @@
 
 <div class="row">
     <div class="col-sm-2">
-        <img src="{{ form.vars.value.getWebPath | imagine_filter('profile') }}">
+        {% if form.vars.value.getWebPath %}
+            <img src="{{ form.vars.value.getWebPath | imagine_filter('profile') }}">
+        {% endif %}
     </div>
 
     <div class="col-sm-4">

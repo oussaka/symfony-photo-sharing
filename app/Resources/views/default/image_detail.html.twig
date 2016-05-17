@@ -18,12 +18,13 @@
                 <img src="{{ image.getWebPath | imagine_filter('explore') }}" />
                 <div class="caption">
                     <div class="row">
-                        <div class="col-md-9 col-xs-7">
+                        <div class="col-md-9 col-xs-6">
+                            <img src="{{ image.user.getWebPath | imagine_filter('profile_icon') }}" />
                             <a href="{{ path('images_user', {'user': image.user}) }}">{{ image.user }}</a>
                             {{ image.createdAt|time_ago_in_words }}
                             <p class="hidden-xs">{{ image.name }}</p>
                         </div>
-                        <div class="col-md-3 col-xs-5">
+                        <div class="col-md-3 col-xs-6">
                             {% include "components/icons.html.twig" with {'image': image} %}
                         </div>
                     </div>
@@ -33,10 +34,21 @@
 
         <div class="col-md-5">
 
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Tomada el: {{ exif.DateTime|date('d m Y') }}</p>
+                    <p><span class="glyphicon glyphicon-time"></span> {{ exif.ExposureTime }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><span class="glyphicon glyphicon-camera"></span> {{ exif.Make }} {{ exif.Model }}</p>
+                    <p><span class="glyphicon glyphicon-flag"></span> {{ exif.ISOSpeedRatings }}</p>
+                </div>
+            </div>
+
             {% if image.tags|length > 0 %}
                 <div class="row">
                     <div class="col-md-12">
-                        Tags
+                        <span class="glyphicon glyphicon-tags"></span>
                         <ul id="tags" class="list-inline">
                         {% for tag in image.tags %}
                             <li>

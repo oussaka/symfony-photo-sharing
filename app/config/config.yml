@@ -96,6 +96,10 @@ liip_imagine:
             filters:
                 thumbnail: { size: [100, 100], mode: inset }
 
+        profile_icon:
+            filters:
+                thumbnail: { size: [30, 30], mode: inset }
+
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
     default_options:

@@ -86,6 +86,7 @@ class ImageController extends Controller
 
         return $this->render('default/image_detail.html.twig', array(
             'image' => $image,
+            'exif' => exif_read_data($image->getAbsolutePath()),
             'rating' => $rating
         ));
     }
