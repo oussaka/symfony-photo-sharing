@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Rating;
+use AppBundle\Event\ImageUploadEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,9 +29,9 @@ class ImageController extends Controller
     }
 
     /**
-     * @Route("/upload", name="upload")
+     * @Route("/upload/classic", name="upload_classic")
      */
-    public function uploadAction(Request $request)
+    public function uploadClassicAction(Request $request)
     {
         $image = new Image();
         $form = $this->createForm(ImageType::class, $image, array(
@@ -50,7 +51,7 @@ class ImageController extends Controller
             return $this->redirectToRoute('images_user', array('user' => $this->getUser()));
         }
 
-        return $this->render('default/upload.html.twig', array(
+        return $this->render('default/upload_classic.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -260,6 +261,22 @@ class ImageController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('explore');
+    }
+
+    /**
+     * @Route("/upload", name="upload")
+     */
+    public function uploadAction(Request $request)
+    {
+        return $this->render('default/upload.html.twig');
+    }
+
+    /**
+     * @Route("/remove/{qquuid}", name="remove", defaults={"qquuid" = null})
+     */
+    public function removeNewAction(Request $request, $qquuid)
+    {
+        return new JsonResponse();
     }
 
 }

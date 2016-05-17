@@ -1,4 +1,14 @@
 $(function(){
+
+    /*Dropzone.options.formDropzone = {
+        paramName: "image[file]",
+        maxFilesize: 6,
+        accept: function(file, done) {
+            done();
+        }
+    };*/
+
+
     $('.favorite').click(function(e){
         var id = $(this).data('id');
 

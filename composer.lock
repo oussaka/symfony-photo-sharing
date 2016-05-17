@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "76ccaaae32887e0b4de4700301c7f370",
-    "content-hash": "a078d5c8aeec2c524a42f906d58d9bdd",
+    "hash": "4ffe9566bc7197b0ad0d12be05a4c7c0",
+    "content-hash": "3956e8225d7d311448e72d7216472a02",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -840,7 +840,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/e770bfa2fd0fc665f55cd7cfeb34bddeffb892f4",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/140cc28026304d3023c880f441689986f99b913b",
                 "reference": "140cc28026304d3023c880f441689986f99b913b",
                 "shasum": ""
             },
@@ -1336,6 +1336,75 @@
                 "psr-3"
             ],
             "time": "2015-10-14 12:51:02"
+        },
+        {
+            "name": "oneup/uploader-bundle",
+            "version": "1.6.0",
+            "target-dir": "Oneup/UploaderBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/1up-lab/OneupUploaderBundle.git",
+                "reference": "70fdfdbdf72642d382ce62d966d2079cc3a39061"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/1up-lab/OneupUploaderBundle/zipball/70fdfdbdf72642d382ce62d966d2079cc3a39061",
+                "reference": "70fdfdbdf72642d382ce62d966d2079cc3a39061",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/finder": "^2.4.0|~3.0",
+                "symfony/framework-bundle": "^2.4.0|~3.0"
+            },
+            "require-dev": {
+                "amazonwebservices/aws-sdk-for-php": "1.5.*",
+                "knplabs/gaufrette": "0.2.*@dev",
+                "oneup/flysystem-bundle": "^1.2",
+                "phpunit/phpunit": "~4.4",
+                "sensio/framework-extra-bundle": "2.*|~3.0",
+                "symfony/browser-kit": "2.*|~3.0",
+                "symfony/class-loader": "2.*|~3.0",
+                "symfony/security-bundle": "2.*|~3.0"
+            },
+            "suggest": {
+                "knplabs/knp-gaufrette-bundle": "0.1.*",
+                "oneup/flysystem-bundle": "^1.2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Oneup\\UploaderBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Schmid",
+                    "email": "js@1up.io",
+                    "homepage": "http://1up.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handles multi file uploads in Symfony2. Features included: Chunked upload, Orphans management, Gaufrette support.",
+            "homepage": "http://1up.io",
+            "keywords": [
+                "FancyUpload",
+                "FineUploader",
+                "MooUpload",
+                "Uploadify",
+                "YUI3 Uploader",
+                "blueimp",
+                "dropzone",
+                "fileupload",
+                "jQuery File Uploader",
+                "plupload",
+                "upload"
+            ],
+            "time": "2016-05-04 09:09:49"
         },
         {
             "name": "paragonie/random_compat",

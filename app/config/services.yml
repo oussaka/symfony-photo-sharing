@@ -1,13 +1,6 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-
     app.image_voter:
         class: AppBundle\Security\ImageVoter
         tags:
@@ -30,3 +23,10 @@ services:
         class: AppBundle\Form\ProfileType
         tags:
             - { name: form.type, alias: fos_user_profile }
+
+    app.upload_listener:
+        class: AppBundle\EventListener\UploadListener
+        arguments: ["@doctrine.orm.entity_manager", "@validator"]
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+            - { name: kernel.event_listener, event: oneup_uploader.validation, method: onValidate }

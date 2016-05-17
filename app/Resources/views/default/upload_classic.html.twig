@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block body_id 'upload_classic' %}
+
+{% block main %}
+
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+    {% do form.tags.setRendered %}
+
+    <div class="row">
+        <div class="col-md-7">
+
+            {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_row(form.file) }}
+
+            <div class="form-group">
+                {{ form_label(form.tags) }}
+                <p>
+                    <button id="add-tag" type="button" class="btn btn-default btn-xs">Add tag</button>
+                </p>
+
+                <ul class="tags list-inline" data-prototype="{{ form_widget(form.tags.vars.prototype)|e }}">
+                    {% for tag in form.tags %}
+                        <li>
+                            <div class="entry input-group input-group-sm input-group-responsive">
+                                {{ form_widget(tag.name, {'attr': {'class': 'form-control'}}) }}
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success btn-danger" type="button">
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary pull-right" type="submit">Submit</button>
+            </div>
+
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

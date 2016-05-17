@@ -25,7 +25,8 @@
         "liip/imagine-bundle": "^1.4",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "salavert/time-ago-in-words": "1.*",
-        "knplabs/knp-paginator-bundle": "^2.5"
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "oneup/uploader-bundle": "~1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

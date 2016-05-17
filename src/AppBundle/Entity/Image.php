@@ -75,7 +75,8 @@ class Image
      * @Assert\Image(
      *  maxSize="6000000",
      *  minWidth = 800,
-     *  allowPortrait = false
+     *  allowPortrait = false,
+     *  groups={"newUpload"}
      * )
      */
     private $file;
@@ -268,7 +269,7 @@ class Image
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/images';
+        return 'uploads/gallery';
     }
 
     /**
