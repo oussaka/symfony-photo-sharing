@@ -32,6 +32,7 @@ class Image
      *
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank(message="image.name.not_blank")
+     * @Assert\Length(min=2, max=255)
      */
     private $name;
 
@@ -73,7 +74,7 @@ class Image
     /**
      * @Assert\NotBlank(message="image.file.not_blank", groups={"newUpload"})
      * @Assert\Image(
-     *  maxSize="6000000",
+     *  maxSize="9000000",
      *  minWidth = 800,
      *  allowPortrait = false,
      *  groups={"newUpload"}

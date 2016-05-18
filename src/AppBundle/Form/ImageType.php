@@ -39,9 +39,9 @@ class ImageType extends AbstractType
                 $data = $form->getData();
 
                 if (null !== $data->getId())
-                    return array('Default', 'Image');
+                    return array('Image'); //edit
                 else
-                    return array('Default', 'newUpload');
+                    return array('Image', 'newUpload'); //create
             }
         ));
     }

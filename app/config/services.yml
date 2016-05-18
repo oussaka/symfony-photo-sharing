@@ -26,7 +26,7 @@ services:
 
     app.upload_listener:
         class: AppBundle\EventListener\UploadListener
-        arguments: ["@doctrine.orm.entity_manager", "@validator"]
+        arguments: ["@doctrine.orm.entity_manager", "@validator", "@security.token_storage"]
         tags:
             - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
             - { name: kernel.event_listener, event: oneup_uploader.validation, method: onValidate }
