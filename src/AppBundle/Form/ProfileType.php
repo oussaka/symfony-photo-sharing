@@ -24,10 +24,4 @@ class ProfileType extends AbstractType
             'data_class' => 'AppBundle\Entity\User'
         ));
     }
-
-    /*public function getParent()
-    {
-        return 'FOS\UserBundle\Form\Type\ProfileFormType';
-    }*/
-
 }
