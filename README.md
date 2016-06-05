@@ -1,9 +1,14 @@
 README
 ======
 
-A basic app made in Symfony3 for uploading images with the ability to add tags.
+A simple demo application made in Symfony 3.0 to upload images
 
-Registered users can comment it and mark as favorites.
+### Features:
+* Multiple files uploader with drag and drop support
+* User registration
+* Comment the pictures
+* Mark pictures as favorites
+
 
 ### Bundles used:
 
