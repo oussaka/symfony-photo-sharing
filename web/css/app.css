@@ -4,6 +4,10 @@ body {
     height: 100%;
 }
 
+#homepage img {
+    width: 100%;
+}
+
 .row .thumbnail {
     border:0;
     box-shadow:none;

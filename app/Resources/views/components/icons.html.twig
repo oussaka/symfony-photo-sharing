@@ -9,10 +9,10 @@
     <span id="num-favorites-{{ image.id }}">{{ image.ratings|length }}</span>
 </button>
 
-<a role="button" class="btn btn-default btn-sm" href="#image-add-comment">
+{#<a role="button" class="btn btn-default btn-sm" href="#image-add-comment">
     <span class="glyphicon glyphicon-comment"></span>
     {{ image.comments|length }}
-</a>
+</a>#}
 
 {% if is_granted('edit', image) %}
     <a href="{{ path('image_edit', {'id': image.id}) }}">

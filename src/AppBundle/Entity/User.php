@@ -66,6 +66,17 @@ class User extends BaseUser
 
     protected $profilePictureTemp;
 
+    /**
+     * @ORM\Column(name="timezone", type="string", length=50, nullable=true)
+     */
+    protected $timezone;
+
+    /**
+     * @ORM\Column(name="locale", type="string", length=2, nullable=true)
+     * @Assert\Locale()
+     */
+    protected $locale;
+
 
     public function __construct()
     {
@@ -315,5 +326,53 @@ class User extends BaseUser
     public function getProfilePicturePath()
     {
         return $this->profilePicturePath;
+    }
+
+    /**
+     * Set timezone
+     *
+     * @param string $timezone
+     *
+     * @return User
+     */
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    /**
+     * Get timezone
+     *
+     * @return string
+     */
+    public function getTimezone()
+    {
+        return $this->timezone;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     *
+     * @return User
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 }

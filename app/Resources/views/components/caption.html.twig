@@ -1,0 +1,17 @@
+<div class="caption">
+    <div class="row">
+        <div class="col-md-9 col-xs-6">
+            <img src="{{ image.user.getWebPath | imagine_filter('profile_icon') }}" />
+
+            <a href="{{ path('images_user', {'user': image.user}) }}">{{ image.user }}</a>
+
+            {{ image.createdAt|time_ago_in_words }}
+
+            <p class="hidden-xs">{{ image.name }}</p>
+        </div>
+
+        <div class="col-md-3 col-xs-6">
+            {% include "components/icons.html.twig" with {'image': image} %}
+        </div>
+    </div>
+</div>
