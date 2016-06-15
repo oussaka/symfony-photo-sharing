@@ -5,7 +5,7 @@
         <img src="{{ user.getWebPath | imagine_filter('profile')}}">
     </div>
 
-    <p>Name: {{ user.name }}</p>
+    <p>{{ 'profile.show.name'|trans }}: {{ user.name }}</p>
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
 </div>

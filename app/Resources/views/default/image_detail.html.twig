@@ -16,19 +16,8 @@
         <div class="col-md-7">
             <div class="thumbnail">
                 <img src="{{ image.getWebPath | imagine_filter('explore') }}" />
-                <div class="caption">
-                    <div class="row">
-                        <div class="col-md-9 col-xs-6">
-                            <img src="{{ image.user.getWebPath | imagine_filter('profile_icon') }}" />
-                            <a href="{{ path('images_user', {'user': image.user}) }}">{{ image.user }}</a>
-                            {{ image.createdAt|time_ago_in_words }}
-                            <p class="hidden-xs">{{ image.name }}</p>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            {% include "components/icons.html.twig" with {'image': image} %}
-                        </div>
-                    </div>
-                </div>
+
+                {% include "components/caption.html.twig" with {'image': image} %}
             </div>
         </div>
 
@@ -36,7 +25,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <p>Tomada el: {{ exif.DateTime|date('d m Y') }}</p>
+                    <p>{{ 'taken_on'|trans }} {{ exif.DateTime|date('d m Y') }}</p>
                     <p><span class="glyphicon glyphicon-time"></span> {{ exif.ExposureTime }}</p>
                 </div>
                 <div class="col-md-6">
@@ -62,7 +51,7 @@
                 </div>
             {% endif %}
 
-            <div class="comments well well-sm">
+            <div class="comments">
                 <ul class="list-unstyled">
                     {% for comment in image.comments %}
                         <li>
@@ -72,21 +61,21 @@
                         </li>
                     {% else %}
                         <div class="image-comment">
-                            <p>No hay comentarios</p>
+                            <p>{{ 'no_comments'|trans }}</p>
                         </div>
                     {% endfor %}
                 </ul>
             </div>
 
-            <div id="image-add-comment" class="well well-sm">
+            <div id="image-add-comment">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {{ render(controller('AppBundle:Image:commentForm', { 'id': image.id })) }}
                 {% else %}
                     <p>
                         <a class="btn btn-success" href="{{ path('fos_user_security_login') }}">
-                            <i class="fa fa-sign-in"></i> Inicia sesión
+                            <i class="fa fa-sign-in"></i>{{ 'button.log_in'|trans }}
                         </a>
-                        para publicar un comentario o indicar que te gusta
+                        {{ 'action.log_in.message'|trans }}
                     </p>
                 {% endif %}
             </div>

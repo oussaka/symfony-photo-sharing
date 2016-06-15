@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Homepage</target>
+            </trans-unit>
+            <trans-unit id="menu.upload">
+                <source>menu.upload</source>
+                <target>Upload!</target>
+            </trans-unit>
+            <trans-unit id="menu.explore">
+                <source>menu.explore</source>
+                <target>Explore</target>
+            </trans-unit>
+            <trans-unit id="menu.your_profile">
+                <source>menu.your_profile</source>
+                <target>Your Profile</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="menu.log_in">
+                <source>menu.log_in</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="menu.sign_up">
+                <source>menu.sign_up</source>
+                <target>Sign up</target>
+            </trans-unit>
+            <trans-unit id="menu.language">
+                <source>menu.language</source>
+                <target>Language</target>
+            </trans-unit>
+
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="label.file">
+                <source>label.file</source>
+                <target>File</target>
+            </trans-unit>
+            <trans-unit id="label.profile_picture">
+                <source>label.profile_picture</source>
+                <target>Profile Picture</target>
+            </trans-unit>
+            <trans-unit id="label.timezone">
+                <source>label.timezone</source>
+                <target>Timezone</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="label.locale">
+                <source>label.locale</source>
+                <target>Locale</target>
+            </trans-unit>
+
+            <trans-unit id="title.comment_error">
+                <source>title.comment_error</source>
+                <target>There was an error publishing your comment</target>
+            </trans-unit>
+
+            <trans-unit id="taken_on">
+                <source>taken_on</source>
+                <target>Taken on:</target>
+            </trans-unit>
+            <trans-unit id="no_comments">
+                <source>no_comments</source>
+                <target>No comments</target>
+            </trans-unit>
+            <trans-unit id="flash.image.edited">
+                <source>flash.image.edited</source>
+                <target>Data have been edited correctly</target>
+            </trans-unit>
+
+            <trans-unit id="button.log_in">
+                <source>button.log_in</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="button.submit">
+                <source>button.submit</source>
+                <target>Submit</target>
+            </trans-unit>
+            <trans-unit id="button.add_tag">
+                <source>button.add_tag</source>
+                <target>Add tag</target>
+            </trans-unit>
+            <trans-unit id="button.add_comment">
+                <source>button.add_comment</source>
+                <target>Publish</target>
+            </trans-unit>
+
+            <trans-unit id="action.log_in.message">
+                <source>action.log_in.message</source>
+                <target>to post a comment</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

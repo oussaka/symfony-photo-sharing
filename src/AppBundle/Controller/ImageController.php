@@ -212,7 +212,8 @@ class ImageController extends Controller
             $entityManager->persist($image);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Datos editados correctamente');
+            $translator = $this->get('translator');
+            $this->addFlash('success', $translator->trans('flash.image.edited') );
 
             return $this->redirectToRoute('image_detail', array('id' => $image->getId()));
         }

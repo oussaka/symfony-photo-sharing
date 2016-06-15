@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Homepage</target>
+            </trans-unit>
+            <trans-unit id="menu.upload">
+                <source>menu.upload</source>
+                <target>Subir fotos</target>
+            </trans-unit>
+            <trans-unit id="menu.explore">
+                <source>menu.explore</source>
+                <target>Explorar</target>
+            </trans-unit>
+            <trans-unit id="menu.your_profile">
+                <source>menu.your_profile</source>
+                <target>Perfil</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Desconectar</target>
+            </trans-unit>
+            <trans-unit id="menu.log_in">
+                <source>menu.log_in</source>
+                <target>Iniciar sesión</target>
+            </trans-unit>
+            <trans-unit id="menu.sign_up">
+                <source>menu.sign_up</source>
+                <target>Registrarse</target>
+            </trans-unit>
+            <trans-unit id="menu.language">
+                <source>menu.language</source>
+                <target>Idioma</target>
+            </trans-unit>
+
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="label.file">
+                <source>label.file</source>
+                <target>Fichero</target>
+            </trans-unit>
+            <trans-unit id="label.profile_picture">
+                <source>label.profile_picture</source>
+                <target>Foto de perfil</target>
+            </trans-unit>
+            <trans-unit id="label.timezone">
+                <source>label.timezone</source>
+                <target>Zona horaria</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Etiquetas</target>
+            </trans-unit>
+            <trans-unit id="label.locale">
+                <source>label.locale</source>
+                <target>Lenguaje</target>
+            </trans-unit>
+
+            <trans-unit id="title.comment_error">
+                <source>title.comment_error</source>
+                <target>Ha ocurrido un error al publicar tu comentario</target>
+            </trans-unit>
+
+            <trans-unit id="taken_on">
+                <source>taken_on</source>
+                <target>Tomada con fecha:</target>
+            </trans-unit>
+            <trans-unit id="no_comments">
+                <source>no_comments</source>
+                <target>No hay comentarios</target>
+            </trans-unit>
+            <trans-unit id="flash.image.edited">
+                <source>flash.image.edited</source>
+                <target>Datos editados correctamente</target>
+            </trans-unit>
+
+            <trans-unit id="button.log_in">
+                <source>button.log_in</source>
+                <target>Iniciar sesión</target>
+            </trans-unit>
+            <trans-unit id="button.submit">
+                <source>button.submit</source>
+                <target>Enviar</target>
+            </trans-unit>
+            <trans-unit id="button.add_tag">
+                <source>button.add_tag</source>
+                <target>Añadir tag</target>
+            </trans-unit>
+            <trans-unit id="button.add_comment">
+                <source>button.add_comment</source>
+                <target>Publicar</target>
+            </trans-unit>
+
+            <trans-unit id="action.log_in.message">
+                <source>action.log_in.message</source>
+                <target>para publicar un comentario</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

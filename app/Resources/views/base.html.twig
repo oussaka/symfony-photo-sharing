@@ -32,13 +32,13 @@
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav">
                     <li {% if app.request.get('_route') == 'homepage' %} class="active"{% endif %}>
-                        <a href="{{ path('homepage') }}">Home</a>
+                        <a href="{{ path('homepage') }}">{{ 'menu.homepage'|trans }}</a>
                     </li>
                     <li {% if app.request.get('_route') == 'upload' %} class="active"{% endif %}>
-                        <a href="{{ path('upload') }}">Upload!</a>
+                        <a href="{{ path('upload') }}">{{ 'menu.upload'|trans }}</a>
                     </li>
                     <li {% if app.request.get('_route') == 'explore' %} class="active"{% endif %}>
-                        <a href="{{ path('explore') }}">Explore</a>
+                        <a href="{{ path('explore') }}">{{ 'menu.explore'|trans }}</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -48,16 +48,30 @@
                                 {{ app.user.username }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('fos_user_profile_edit') }}">Your profile</a></li>
-                                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                                <li><a href="{{ path('fos_user_profile_edit') }}">{{ 'menu.your_profile'|trans }}</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'menu.logout'|trans }}</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'menu.language'|trans }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('homepage', {'_locale': 'es'}) }}">Spanish</a></li>
+                                <li><a href="{{ path('homepage', {'_locale': 'en'}) }}">English</a></li>
                             </ul>
                         </li>
                     {% else %}
                         <li>
-                            <a href="{{ path('fos_user_security_login') }}">Log in</a>
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'menu.log_in'|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('fos_user_registration_register') }}">Sign up</a>
+                            <a href="{{ path('fos_user_registration_register') }}">{{ 'menu.sign_up'|trans }}</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'menu.language'|trans }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('homepage', {'_locale': 'es'}) }}">Spanish</a></li>
+                                <li><a href="{{ path('homepage', {'_locale': 'en'}) }}">English</a></li>
+                            </ul>
                         </li>
                     {% endif %}
                 </ul>
