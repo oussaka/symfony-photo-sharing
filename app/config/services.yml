@@ -13,6 +13,19 @@ services:
         tags:
             - { name: twig.extension }
 
+    app.twig.app_extension:
+        public:    false
+        class:     AppBundle\Twig\AppExtension
+        arguments: ['%app_locales%']
+        tags:
+            - { name: twig.extension }
+
+    app.form.type.profile:
+        class: AppBundle\Form\ProfileType
+        arguments: ["%app_locales%"]
+        tags:
+            - { name: form.type }
+
     app.cacheimage_listener:
         class: AppBundle\EventListener\CacheImageListener
         arguments: ["@liip_imagine.cache.manager"]
@@ -28,12 +41,14 @@ services:
 
     app.redirect_to_preferred_locale_listener:
         class: AppBundle\EventListener\RedirectToPreferredLocaleListener
-        arguments: ['@router', '%app_locales%', '%locale%']
+        arguments: ['@router', '%app_locales%', '%locale%', '@session']
         tags:
             - { name: kernel.event_listener, event: kernel.request }
 
     app.user_locale_listener:
         class: AppBundle\EventListener\UserLocaleListener
-        arguments: ['@router', '@session']
+        arguments: ['@doctrine.orm.entity_manager', '@router', '@session', '%app_locales%']
         tags:
             - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
+            - { name: kernel.event_listener, event: fos_user.registration.completed, method: onRegistrationCompleted }
+            - { name: kernel.event_listener, event: fos_user.profile.edit.completed, method: onProfileEditCompleted }

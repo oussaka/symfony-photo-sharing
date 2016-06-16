@@ -16,19 +16,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ImageController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $images = $entityManager->getRepository('AppBundle:Image')->findHighestRatedImages();
-
-        return $this->render('default/index.html.twig', array(
-            'images' => $images
-        ));
-    }
-
-    /**
      * @Route("/upload/classic", name="upload_classic")
      */
     public function uploadClassicAction(Request $request)

@@ -57,7 +57,7 @@
             </trans-unit>
             <trans-unit id="label.locale">
                 <source>label.locale</source>
-                <target>Locale</target>
+                <target>Language</target>
             </trans-unit>
 
             <trans-unit id="title.comment_error">

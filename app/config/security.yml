@@ -25,6 +25,7 @@ security:
                 default_target_path: homepage
             logout:
                 path: fos_user_security_logout
+                target: homepage
             anonymous:    true
 
     access_control:
